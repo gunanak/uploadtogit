@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<style >
+
+	.wrap {
+  		bottom: 0;
+  		right: 0;
+  		z-index: 3000;
+	}
+	</style>
+</head>
+<body  style="margin:5px; padding:0px" >
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+	<button type="button" onClick="run();" class="btn btn-success btn-md" style="outline:none; "> <span class="glyphicon glyphicon-play"></span> Run</button>
+	<button type="button" onClick="run();" class="btn btn-info btn-md" style="outline:none; "> <span class="glyphicon glyphicon-info-sign"></span> About</button>
+
+	<!-- <textarea id="textbox">Type something here</textarea>  -->
+	<a download="info.html" id="downloadlink" >
+	<button type="button" id="create" onClick="save();" class="btn btn-warning btn-md" style="outline:none; "><span class="glyphicon glyphicon-info-sign"></span>Create Output</button> </a>
+	
+	
+	<input class="btn btn-info btn-md" style="outline:none; " type='file' accept='text/plain' onchange='openFile(event)' ><br>
+	
+	<button type="button" id="incsize" onClick="inc();">+</button>
+
+	<div class="container-fluid" style="padding-top:5px; padding-left:0px; padding-right:0px">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div id="editor" style="width:100%;height:600px;border:5px solid grey " ></div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6" >
+				<iframe id="display" style="width:100%;height:600px;border:5px solid lightgrey background-color:#FFFFFF;"></iframe>
+			</div>
+		</div>
+	</div>
+
+	<script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+	<script>
+	var editor;
+	var fontsize = 16;
+	require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' }});
+	require(['vs/editor/editor.main'], function() {
+		var val
+		if (localStorage.getItem('editor') === null) {
+            val =  "function setup() {\n}\nfunction draw() {\n\tellipse(50,50,30,30) \n}"
+			console.log(''+val)
+        }else{
+            val = localStorage.getItem('editor');
+        }
+		editor = monaco.editor.create(document.getElementById('editor'), {
+			value: [
+			''+val
+			].join('\n'),
+			language: 'javascript',
+			theme: 'vs-dark',
+			fontSize : 16,
+			automaticLayout:true,
+
+		});
+		var myBinding = editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+    		console.log('SAVE pressed!');
+		});
+		editor.onKeyDown(function (e) {
+      		if (e.ctrlKey && e.keyCode === monaco.KeyCode.KEY_S) {
+       			e.preventDefault();
+      		}	
+    	});
+   		editor.onKeyUp(function (e) {
+      		if (e.ctrlKey && e.keyCode === monaco.KeyCode.KEY_S) {
+        		e.preventDefault();
+      		}
+      		var val = editor.getValue(); 
+      		localStorage.setItem('editor', val);
+    	});
+	});
+
+	
+ function saveValue(e){
+        	console.log(''+e.value)
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+	function inc(){
+		
+		var a = editor.getValue()
+		var aa = String(a);
+		var b = a.fontsize(20);
+		// editor.setValue(b)
+		// document.getElementById("editor").innerHTML = b;
+		// console.log(''+a);
+
+	}
+
+	function run() {
+		var jscode = '';
+		var p5code = editor.getValue();
+
+		var p5 = '';
+		p5 += '<script src="http://chavee.com/microgear.p5.js"><\/script>\n';
+		p5 += '<script>'+p5code+'<\/script>';
+	// console.log("6 \n"+p5);
+
+
+	jscode += '<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/p5.js"><\/script>\n';
+	jscode += '<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/addons/p5.dom.js"><\/script>\n';
+	jscode += '<script src="https://cdn.netpie.io/microgear.js"><\/script>\n';
+	jscode += '<script src="https://rawgit.com/bobcgausa/cook-js/master/b2.js"><\/script>\n';
+	jscode += '<script src="https://rawgit.com/bobcgausa/cook-js/master/box2d-html5.js"><\/script>\n';
+
+	jscode += '<script>'+p5code+'<\/script>';
+
+	var iframe = document.getElementById('display');
+	iframe.src = "data:text/html;charset=utf-8," + escape(jscode);
+	iframe.src = iframe.src;
+	
+	}
+
+	function save () {
+	
+	var textFile = null,
+	
+	makeTextFile = function (text) {
+		// console.log("connect function run");
+		var data = new Blob([text], {type: 'text/plain'});
+		// console.log(data);
+		if (textFile !== null) {
+    		window.URL.revokeObjectURL(textFile);
+    	}
+    	textFile = window.URL.createObjectURL(data);
+    	return textFile;
+	};
+
+	var create = document.getElementById('create'),
+	textbox = document.getElementById('textbox');
+	// console.log("connect function 1");
+
+	var a = unescape(parent.document.getElementById('display').src);
+	
+	var b = a.substring(418);
+	var c = '<script src="http://chavee.com/microgear.p5.js"><\/script>\n';
+	c += b;
+	console.log(""+c);
+
+	var link = document.getElementById('downloadlink');
+	link.href = makeTextFile(""+c);
+	link.style.display = 'inline';
+
+	}
+
+	var openFile = function(event) {
+		var input = event.target;
+		var reader = new FileReader();
+		reader.onload = function(){
+		var text = reader.result;
+
+		// var node = document.getElementById('output');
+		editor.setValue(text)
+		var val = editor.getValue(); 
+      	localStorage.setItem('editor', val);
+
+		};
+		reader.readAsText(input.files[0]);
+	};
+</script>
+
+</body>
+</html>

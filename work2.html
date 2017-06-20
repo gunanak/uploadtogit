@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+</head>
+<body  class=" blue-grey darken-3">
+	<nav>
+		<div class="nav-wrapper teal lighten-1">
+			<a href="" class="brand-logo center  ">Netpie Editor</a>
+			<!-- <ul class="right hide-on-med-and-down"><li ><a href="#" class="large material-icons" data-activates="slide-out">menu</a></li></ul> -->
+		<!-- 	<ul id="nav-mobile" class="left hide-on-med-and-down">
+				
+				<li><ul id="dropdown2" class="dropdown-content " >
+					<li><a href="#!" action="#" class=" file-field input-field" style="font-size: 14px">
+						Open file
+						<input type="file" accept='text/plain' onchange='openFile(event)'>
+					</a></li>
+					<li>
+						<a href="#!" id="create" onClick="save();" class="teal-text text-lighten-1" style="outline:none;font-size: 14px" 
+						download="info.html">Download file</a></li>
+					</ul>
+					<a class=" dropdown-button" href="#!" data-activates="dropdown2" style="font-size: 18px">File<i class="mdi-navigation-arrow-drop-down right"></i></a></li> -->
+					
+				<!-- <ul id="dropdown2" class="dropdown-content " >
+					<li><a href="#!" action="#" class=" file-field input-field" style="font-size: 14px">
+
+						Open file
+						<input type="file" accept='text/plain' onchange='openFile(event)'>
+					</a></li>
+					<li>
+						<a href="#!" id="create" onClick="save();" class="teal-text text-lighten-1" style="outline:none;font-size: 14px" 
+						download="info.html">Download file</a></li>
+					</ul>
+					<a class="btn dropdown-button" href="#!" data-activates="dropdown2" style="font-size: 18px">File<i class="mdi-navigation-arrow-drop-down right"></i></a> -->
+					<!-- </ul> -->
+				</div>	
+			</nav>
+			<br>
+			<!-- ///////////////////////////// -->
+
+			<!--   //////////////////////////     -->
+
+
+
+
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script> -->
+
+
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" /> -->
+<!-- 
+	<button type="button" onClick="run();" class="btn btn-success btn-md teal lighten-2" style="outline:none; "> <span class="glyphicon glyphicon-play"></span> Run</button>
+	<button type="button" onClick="run();" class="btn btn-info btn-md " style="outline:none; "> <span class="glyphicon glyphicon-info-sign"></span> About</button> -->
+
+	<!-- <textarea id="textbox">Type something here</textarea>  -->
+	<!-- <button type="button" id="create" onClick="save();" class="btn btn-warning btn-md" style="outline:none; "><span class="glyphicon glyphicon-info-sign"></span>Create Output</button> --> 
+
+	<!-- <a download="info.html" id="downloadlink" style="display: none">Download</a> -->
+
+	<!-- <input type='file' accept='text/plain' onchange='openFile(event)'> -->
+
+<!-- 	<form action="#">
+		<div class="file-field input-field">
+			<div class="btn">
+				<span>File</span>
+				<input type="file" accept='text/plain' onchange='openFile(event)'>
+			</div>
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text">
+			</div>
+		</div>
+	</form> -->
+
+	<div class="" >
+		<div class="row">
+			<!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+			<div class="col s6 ">
+				<div class="card" id="editor" style="width:100%;height:450px;"></div>
+			</div>
+			<div class="col s6  ">
+				<iframe class="card blue-grey lighten-3" id="display" style="width:100%;height:450px;"></iframe>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<ul id="slide-out" class="side-nav">
+		<li><div class="userView">
+			<div class="background teal ">
+
+			</div>
+			<a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+			<a href="#!name"><span class="white-text name ">user</span></a>
+			<a href="#!email"><span class="white-text email">user@gmail.com</span></a>
+		</div></li>
+		<li><a href="#!" action="#" class=" file-field input-field" style="font-size: 14px"><i class="material-icons">note_add</i>Open file<input type="file" accept='text/plain' onchange='openFile(event)'>
+		</a></li>
+		<li><a href="#!" id="create" onClick="save();" class="" style="outline:none;font-size: 14px" download="info.html"><i class="material-icons">description</i>Download file</a></li>
+		<li><div class="divider"></div></li>
+		<li><a class="subheader">Your file</a></li>
+
+    <!-- <ul><li >
+    	<a class="waves-effect " href="#!">lisffile.js </a>
+    	 
+    </li></ul> -->
+
+
+    <ul class="collection">
+    	<li class="collection-item dismissable">
+    		<div > <a href="">kopai</a>
+    			<a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+    		</div></li>
+    		<li class="collection-item dismissable"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    		<div id="mySidenav" class="sidenav"></div>
+    	</ul>
+    </ul>
+    <div class="center container " >
+
+    	<a href="#" data-activates="slide-out" class="btn button-collapse white-text teal lighten-2" ><i class="material-icons">menu</i></a>
+
+
+
+    	<button type="button" onClick="run();" class="btn btn-success btn-md teal lighten-2" style="outline:none; "> <span class="glyphicon glyphicon-play"></span> Run</button>
+    	<button type="button" onClick="clearEditor()" class="btn btn-info btn-md teal lighten-2" style="outline:none; "> <span class="glyphicon glyphicon-info-sign"></span> Clear</button>
+
+
+    </div>
+
+    <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script>
+    	var namefile
+		var editor;
+		var allKey = []
+		var counter = 0;
+		function codeAddress() {
+	        var value = [],
+	    	keys = Object.keys(localStorage),
+	    	i = keys.length;
+	    	var indexEditor,indexFinalFile;
+	    	// console.log('key'+keys[i-1]);
+	    	while(i--){
+	    		allKey.push(keys[i])
+	    		value.push(localStorage.getItem(keys[i]))
+	    	}
+	    	indexEditor = allKey.indexOf('editor');
+	    	indexFinalFile = allKey.indexOf('finalFile');
+	    	// console.log('e= '+indexEditor+' f='+indexFinalFile);
+	    	if(indexEditor != -1 || indexFinalFile != -1){
+		    	if(indexEditor != -1 && indexFinalFile != -1){
+		    		allKey.splice(indexEditor,1);
+		    		allKey.splice(indexFinalFile,1);
+		    	}else if(indexEditor != -1){
+		    		allKey.splice(indexEditor,1);
+		    	}else if(indexFinalFile != -1){
+		    		allKey.splice(indexFinalFile,1);
+		    	}
+		    	var j = allKey.length;
+		    	while(j--){
+		    		showkey(allKey[j])
+		    	}	
+	    	}
+	    		
+	    }
+	    window.onload = codeAddress;
+		function showkey(allKey){
+			console.log(allKey)
+			var tagLi = document.createElement("li");
+			document.getElementById('mySidenav').appendChild(tagLi);
+			var tagDiv = document.createElement("div")
+			tagLi.appendChild(tagDiv);
+			var btn = document.createElement("a");
+			btn.id = counter;
+			counter += 1;
+			btn.classname =  allKey;
+			btn.className += "waves-effect"
+			var t = document.createTextNode(""+allKey);
+			btn.appendChild(t);
+			btn.style.cssText = 'margin-left:1em;';
+			btn.onclick = function(){
+				console.log(btn.id)
+				var key = btn.classname;
+				var val = localStorage.getItem(key);
+				localStorage.setItem('finalFile',key);
+				editor.setValue(val)
+			}
+			var btn2 = document.createElement("a");
+			btn2.classname =  'close';
+			btn2.className += "waves-effect"    
+			var t = document.createTextNode("close ");       
+			btn2.appendChild(t);
+			btn2.style.cssText = 'float: right;color :red;margin-right:2em;';
+			btn2.onclick = function(){
+				var key = btn.classname;
+				localStorage.removeItem(key);
+				btn.remove();
+				btn2.remove();
+				var finalval = localStorage.getItem('finalFile');
+				var removedata = localStorage.getItem(finalval)
+				if(removedata == null){
+					var val =  "function setup() {\n}\nfunction draw() {\n\tellipse(50,50,30,30) \n}"
+					editor.setValue(val)
+				}
+			}
+			tagDiv.appendChild(btn)
+			tagDiv.appendChild(btn2)
+		}
+	    $('.button-collapse').sideNav({
+		    menuWidth: 300, // Default is 300
+		    edge: 'left', // Choose the horizontal origin
+		    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+		    draggable: true // Choose whether you can drag to open on touch screens
+	  	});
+
+	    require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' }});
+	    require(['vs/editor/editor.main'], function() {
+	    	var val
+			var file
+	    	if (localStorage.getItem('finalFile') === null) {
+				val =  "function setup() {\n}\nfunction draw() {\n\tellipse(50,50,30,30) \n}"
+				console.log(''+val)
+			}else{
+				file = localStorage.getItem('finalFile');
+				if(localStorage.getItem(file) == null){
+					val =  "function setup() {\n}\nfunction draw() {\n\tellipse(50,50,30,30) \n}"
+				}else{
+            		val = localStorage.getItem(file);
+				}
+			}
+	    	editor = monaco.editor.create(document.getElementById('editor'), {
+	    		value: [
+	    		''+val
+	    		].join('\n'),
+	    		language: 'javascript',
+	    		theme: 'vs-dark',
+	    		fontSize : 12,
+	    		automaticLayout:true
+	    	});
+	    	var myBinding = editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+	    		console.log('SAVE pressed!');
+	    	});
+	    	editor.onKeyDown(function (e) {
+	    		if (e.ctrlKey && e.keyCode === monaco.KeyCode.KEY_S) {
+	    			e.preventDefault();
+	    		}	
+	    	});
+	    	editor.onKeyUp(function (e) {
+	    		if (e.ctrlKey && e.keyCode === monaco.KeyCode.KEY_S) {
+					e.preventDefault();
+				}
+				var val = editor.getValue();
+				if(localStorage.getItem('finalFile') === null) {
+					localStorage.setItem('editor', val);
+				}else{
+					file = localStorage.getItem('finalFile');
+					localStorage.setItem(file, val);
+				}
+	    	});
+	    });
+
+		function run() {
+			var jscode = '';
+			var p5code = editor.getValue();
+
+			var p5 = '';
+			p5 += '<script src="http://chavee.com/microgear.p5.js"><\/script>\n';
+			p5 += '<script>'+p5code+'<\/script>';
+
+
+			jscode += '<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/p5.js"><\/script>\n';
+			jscode += '<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/addons/p5.dom.js"><\/script>\n';
+			jscode += '<script src="https://cdn.netpie.io/microgear.js"><\/script>\n';
+			jscode += '<script src="https://rawgit.com/bobcgausa/cook-js/master/b2.js"><\/script>\n';
+			jscode += '<script src="https://rawgit.com/bobcgausa/cook-js/master/box2d-html5.js"><\/script>\n';
+
+			jscode += '<script>'+p5code+'<\/script>';
+
+			var iframe = document.getElementById('display');
+			iframe.src = "data:text/html;charset=utf-8," + escape(jscode);
+			iframe.src = iframe.src;
+
+		}
+		function clearEditor(){
+			if(confirm("Are you sure?")==true){
+				editor.setValue("")
+			}
+			else{
+
+			}
+		}
+
+		function save () {
+			run()
+
+			var textFile = null,
+
+			makeTextFile = function (text) {
+				console.log("connect function run");
+				var data = new Blob([text], {type: 'text/plain'});
+				console.log(data);
+				if (textFile !== null) {
+					window.URL.revokeObjectURL(textFile);
+				}
+				textFile = window.URL.createObjectURL(data);
+				return textFile;
+			};
+
+			// var create = document.getElementById('create'),
+			// textbox = document.getElementById('textbox');
+			// console.log("connect function 1");
+
+			// var a = unescape(parent.document.getElementById('display').src);
+
+			// var b = a.substring(418);
+			// var c = '<script src="http://chavee.com/microgear.p5.js"><\/script>\n';
+			// c += b;
+			// console.log(""+c);
+
+			// var link = document.getElementById('downloadlink');
+			// link.href = makeTextFile(""+c);
+			// link.style.display = 'block';
+
+
+
+			var create = document.getElementById('create'),
+			textbox = document.getElementById('textbox');
+			console.log("connect function 1");
+
+			var a = unescape(parent.document.getElementById('display').src);
+
+			var b = a.substring(29);
+			// var c = '<script src="http://chavee.com/microgear.p5.js"><\/script>\n';
+			// c += b;
+			// console.log(""+c);
+
+			var link = document.getElementById('create');
+			link.href = makeTextFile(""+b);
+			link.style.display = 'block';
+
+		}
+
+		var openFile = function(event) {
+			var input = event.target;
+			var reader = new FileReader();
+			reader.onload = function(){
+				var text = reader.result;
+				namefile = input.files[0].name;
+				editor.setValue(text)
+				var val = editor.getValue(); 
+				localStorage.setItem(namefile, val);
+				localStorage.setItem('finalFile',namefile);
+
+			};
+			reader.readAsText(input.files[0]);
+			namefile = input.files[0].name;
+			var allKey = [],
+	    	keys = Object.keys(localStorage),
+	    	i = keys.length;
+	    	while(i--){
+	    		allKey.push(keys[i])
+	    	}
+	    	if(allKey.indexOf(namefile) == -1){
+	    		showkey(namefile)
+	    	}
+		};
+	</script>
+
+</body>
+</html>
